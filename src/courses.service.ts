@@ -17,4 +17,28 @@ export class CoursesService {
 
     return this.jsonConfig.writeJsonFile(courses);
   }
+
+  async delete(number: string) {
+    let courses: Course[] = await this.jsonConfig.readJsonFile();
+
+    const index = courses.findIndex((item) => {
+      return item.number === number;
+    });
+
+    courses.splice(index, 1);
+
+    return this.jsonConfig.writeJsonFile(courses);
+  }
+
+  async edit(number: string, course: Course) {
+    let courses: Course[] = await this.jsonConfig.readJsonFile();
+
+    const index = courses.findIndex((item) => {
+      return item.number === number;
+    });
+
+    courses[index] = course;
+
+    return this.jsonConfig.writeJsonFile(courses);
+  }
 }
