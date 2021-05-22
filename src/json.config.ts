@@ -1,7 +1,7 @@
 import { Course } from './interfaces/course.interface';
 
 export class JsonConfig {
-  private _jsonFilePath: string = './assets/json/courses.json';
+  private _jsonFilePath: string = './assets/json/coursess.json';
   private fs = require('fs');
 
   public get getJsonFilePath(): string {
@@ -16,9 +16,7 @@ export class JsonConfig {
           reject(err);
           return;
         }
-
         resolve(JSON.parse(jsonString));
       });
     });
-  };
 }
