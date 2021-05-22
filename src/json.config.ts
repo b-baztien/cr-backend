@@ -19,4 +19,5 @@ export class JsonConfig {
         resolve(JSON.parse(jsonString));
       });
     });
+  };
 }
