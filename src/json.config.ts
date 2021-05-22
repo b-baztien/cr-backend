@@ -9,14 +9,16 @@ export class JsonConfig {
   }
 
   readJsonFile = () => {
-    return this.fs.readFile(this._jsonFilePath, 'utf8', (err, jsonString) => {
-      if (err) {
-        console.log('อ่านไฟล์ล้มเหลว:', err);
-        return;
-      }
+    return new Promise<Course[]>((resolve, reject) => {
+      this.fs.readFile(this._jsonFilePath, 'utf8', (err, jsonString) => {
+        if (err) {
+          console.log('อ่านไฟล์ล้มเหลว:', err);
+          reject(err);
+          return;
+        }
 
-      console.log('ข้อมูล:', jsonString);
-      return JSON.parse(jsonString);
+        resolve(JSON.parse(jsonString));
+      });
     });
   };
 }
