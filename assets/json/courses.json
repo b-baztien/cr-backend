@@ -1,12 +1,1 @@
-[
-  {
-    "id": "1",
-    "number": "00001",
-    "title": "JavaScript"
-  },
-  {
-    "id": "2",
-    "number": "00002",
-    "title": "React"
-  }
-]
+[{"number":"00004","title":"MongoDB"}]

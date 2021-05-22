@@ -1,7 +1,7 @@
 import { Course } from './interfaces/course.interface';
 
 export class JsonConfig {
-  private _jsonFilePath: string = './assets/json/coursess.json';
+  private _jsonFilePath: string = './assets/json/courses.json';
   private fs = require('fs');
 
   public get getJsonFilePath(): string {
@@ -16,8 +16,29 @@ export class JsonConfig {
           reject(err);
           return;
         }
-        resolve(JSON.parse(jsonString));
+        if (jsonString == '') {
+          resolve([]);
+        } else {
+          resolve(JSON.parse(jsonString));
+        }
       });
+    });
+  };
+
+  writeJsonFile = (course: Course[]) => {
+    return new Promise<void>((resolve, reject) => {
+      this.fs.writeFile(
+        this._jsonFilePath,
+        JSON.stringify(course),
+        'utf-8',
+        (err) => {
+          if (err) {
+            reject(err);
+            return;
+          }
+          resolve();
+        },
+      );
     });
   };
 }

@@ -9,4 +9,12 @@ export class CoursesService {
   async findAll(): Promise<Course[]> {
     return this.jsonConfig.readJsonFile();
   }
+
+  async create(course: Course): Promise<void> {
+    let courses: Course[] = await this.jsonConfig.readJsonFile();
+
+    courses.push(course);
+
+    return this.jsonConfig.writeJsonFile(courses);
+  }
 }
